@@ -1,20 +1,46 @@
-<script setup>
-import { Head, Link } from "@inertiajs/vue3";
-import NavLayout from "@/Layouts/NavLayout.vue";
-
-defineProps({
-  canLogin: Boolean,
-  canRegister: Boolean,
-  laravelVersion: String,
-  phpVersion: String,
-});
-</script>
-
 <template>
   <Head title="Youtube" />
 
-  <NavLayout> Welcome </NavLayout>
+  <NavLayout>
+    <!-- 
+    RESPONSIVENESS ::
+    ================
+
+    2xl:grid-cols-5: extra-large screens (1536px and up) e.g. 4k monitor such as iMac Pro
+    xl:grid-cols-4: large screens (1280px and up) e.g. desktop
+    lg:grid-cols-3: medium screens (1024px and up) e.g. laptop
+    md:grid-cols-3: small screens (768px and up) e.g. iPad and Tablets
+    sm:grid-cols-2: extra-small screens (640px and up) e.g. iPhone 6/7/8 Plus and Android phones
+
+    NOTE: For screens smaller than the specified breakpoint, the default number of columns specified 
+    in other breakpoints will be used. Or the default value will be applied.
+
+
+   -->
+    <div
+      class="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2"
+    >
+      <VideoCard
+        title="Cool city view"
+        views="1.4M views - 3 days ago"
+        user="John Doe McGrew"
+        image="https://picsum.photos/id/230/100"
+        videoUrl="/videos/seoul-traffic.mp4"
+        thumbnail="/videos/Thumbnails/seoul-traffic.png"
+      />
+    </div>
+  </NavLayout>
 </template>
+
+<script setup>
+import { Head, Link } from "@inertiajs/vue3";
+import NavLayout from "@/Layouts/NavLayout.vue";
+import VideoCard from "@/Components/VideoCard.vue";
+
+// defineProps({
+//   canLogin: Boolean,
+// });
+</script>
 
 <style>
 .bg-dots-darker {
