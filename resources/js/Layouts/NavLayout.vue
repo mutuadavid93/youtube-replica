@@ -90,10 +90,7 @@
       <!-- end search input -->
 
       <div class="flex items-baseline">
-        <button
-          type="button"
-          class="p-2 rounded-full hover:bg-gray-700 cursor-pointer"
-        >
+        <button type="button" class="p-2 rounded-full hover:bg-gray-700 cursor-pointer">
           <VideoPlusOutlineIcon fillColor="#FFFFFF" :size="23" />
         </button>
         <button
@@ -154,8 +151,14 @@
     </div>
     <!-- end side navigation -->
     <div id="SideNavOverlay"></div>
+
+<!-- 60px is the height of nav bar -->
+    <div class="w-[100%] h-[calc(100vh-60px)] absolute right-0 top-[60px]"
+    :class="{'w-[calc(100%-70px)]': !openSideNav, 'w-[calc(100%-240px)]': openSideNav}"
+    >
+      <slot />
+    </div>
   </div>
-  <slot />
 </template>
 
 <script setup>
