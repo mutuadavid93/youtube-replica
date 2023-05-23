@@ -1,11 +1,20 @@
 <template>
   <Head title="Youtube" />
 
+  <!-- 
+    see - https://tailwindcss.com/docs/screens for all media queries.
+   -->
+
   <NavLayout>
     <!-- 
-    xl:flex : only apply flex to xl screens and up on md screens and down, it will be ignored
+    xl:flex : only apply flex to xl screens and up (i.e. min-width: 1280px) while 
+    on md screens and down, it will be ignored 
+    
+    - i.e. falls back to the breakpoint below it. Or if there isn't a breakpoint available, 
+    the items will be stacked.
    -->
     <div class="xl:flex">
+      <!-- First column -->
       <div class="p-3">
         <video src="/videos/seoul-traffic.mp4" controls autoplay />
         <div class="text-white text-2xl font-extrabold mt-4">A cool video</div>
@@ -75,6 +84,25 @@
           </div>
         </div>
       </div>
+
+      <!-- Second column
+      
+      sm:block hidden:  element to be hidden on small screens i.e. below (640px) and visible 
+      on larger screens, you can apply both classes like this
+       -->
+      <div class="w-[500px] p-3 sm:block hidden">
+        <div class="flex mb-3">
+          <RecommededVideos
+            :vid="{
+              title: 'Little poodle in a jumper',
+              video: '/videos/seoul-traffic.mp4',
+              thumbnail: '/videos/Thumbnails/seoul-traffic.png',
+              user: 'John Doe',
+              views: '12k views - 3 days ago',
+            }"
+          />
+        </div>
+      </div>
     </div>
   </NavLayout>
 </template>
@@ -82,6 +110,7 @@
 <script setup>
 import { Head, Link } from "@inertiajs/vue3";
 import NavLayout from "@/Layouts/NavLayout.vue";
+import RecommededVideos from "@/Components/RecommededVideos.vue";
 import CheckCircle from "vue-material-design-icons/CheckCircle.vue";
 import ThumbUpOutline from "vue-material-design-icons/ThumbUpOutline.vue";
 import ThumbDownOutline from "vue-material-design-icons/ThumbDownOutline.vue";
