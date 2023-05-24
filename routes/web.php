@@ -17,7 +17,8 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', fn() => Inertia::render('Welcome'));
+Route::get('/', fn() => Inertia::render('Welcome'))->name("home");
+Route::get('/delete-video', fn() => Inertia::render('DeleteVideo'))->name("deleteVideo");
 
 Route::get('/videos/{id}', [VideosController::class, 'show'])->name('videos.show');
 
