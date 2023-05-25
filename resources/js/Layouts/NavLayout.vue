@@ -127,9 +127,15 @@
           :class="[!openSideNav ? 'p-2' : '-ml-2 px-5 pb-2 pt-[7px]']"
           class="mt-[60px] w-full"
         >
-          <SideNavItem :openSideNav="openSideNav" iconString="Home" />
-          <SideNavItem :openSideNav="openSideNav" iconString="Add Video" />
-          <SideNavItem :openSideNav="openSideNav" iconString="Delete Video" />
+          <Link :href="route('home')">
+            <SideNavItem :openSideNav="openSideNav" iconString="Home" />
+          </Link>
+          <Link :href="route('addVideo')">
+            <SideNavItem :openSideNav="openSideNav" iconString="Add Video" />
+          </Link>
+          <Link :href="route('deleteVideo')">
+            <SideNavItem :openSideNav="openSideNav" iconString="Delete Video" />
+          </Link>
 
           <!-- the horizontal line + some space -->
           <div class="border-b border-b-gray-700 my-2.5"></div>
@@ -217,9 +223,15 @@
         </Link>
       </div>
       <ul class="w-full px-5 py-2 p-2 mt-2">
-        <SideNavItem :openSideNav="true" iconString="Home" />
-        <SideNavItem :openSideNav="true" iconString="Add Video" />
-        <SideNavItem :openSideNav="true" iconString="Delete Video" />
+        <Link :href="route('home')">
+          <SideNavItem :openSideNav="true" iconString="Home" />
+        </Link>
+        <Link :href="route('addVideo')">
+          <SideNavItem :openSideNav="true" iconString="Add Video" />
+        </Link>
+        <Link :href="route('deleteVideo')">
+          <SideNavItem :openSideNav="true" iconString="Delete Video" />
+        </Link>
 
         <!-- the horizontal line + some space -->
         <div class="border-b border-b-gray-700 my-2.5"></div>

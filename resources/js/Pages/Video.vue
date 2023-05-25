@@ -33,6 +33,12 @@
           </div>
         </div>
 
+        <!-- 
+          NOTE:
+          
+          "block sm:hidden" opposite to "sm:block hidden" The element will be "visible" in small screens (i.e. below 640px)
+          and hidden on screens 640px and above i.e. Larger screens.
+        -->
         <div class="w-[500px] p-3 block sm:hidden">
           <div v-for="vid in recommededVideos" :key="vid">
             <Link class="flex mb-3" :href="route('videos.show', { id: vid.id })">
@@ -93,6 +99,8 @@
       </div>
 
       <!-- Second column
+
+      NOTE:
       
       sm:block hidden:  element to be hidden on small screens i.e. below (640px) and visible 
       on larger screens, you can apply both classes like this
