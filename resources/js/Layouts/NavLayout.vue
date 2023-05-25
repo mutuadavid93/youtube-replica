@@ -20,9 +20,13 @@
         <div class="mx-2"></div>
 
         <!-- Logo -->
-        <div class="flex items-center justify-center text-white mr-10 cursor-pointer">
-          YOUTUBE
-        </div>
+        <Link
+          :href="route('home')"
+          class="flex items-center justify-center text-white mr-10 cursor-pointer"
+        >
+          <img width="32" src="/images/YT-logo.png" alt="" />
+          <img width="62" src="/images/YT-logo-text.png" alt="" />
+        </Link>
       </div>
 
       <!-- start search input -->
@@ -181,7 +185,6 @@
       - if page url is not home
     -->
     <div
-    v-if="$page.url !== '/'"
       id="SideNavOverlay"
       ref="SideNavOverlay"
       class="h-[100%] fixed z-50 bg-black mt-[9px] w-[240px]"
@@ -205,9 +208,13 @@
         <div class="mx-2"></div>
 
         <!-- Logo -->
-        <div class="flex items-center justify-center text-white mr-10 cursor-pointer">
-          YOUTUBE
-        </div>
+        <Link
+          :href="route('home')"
+          class="flex items-center justify-center text-white mr-10 cursor-pointer"
+        >
+          <img width="32" src="/images/YT-logo.png" alt="" />
+          <img width="62" src="/images/YT-logo-text.png" alt="" />
+        </Link>
       </div>
       <ul class="w-full px-5 py-2 p-2 mt-2">
         <SideNavItem :openSideNav="true" iconString="Home" />
@@ -274,14 +281,14 @@ let openSideNav = ref(true);
 
 // Overlay
 let openSideNavOverlay = ref(false);
-let sideNavOverlay = ref(null);
+let SideNavOverlay = ref(null);
 let width = ref(document.documentElement.clientWidth);
 
-// HINT: Inside onMounted(), all JavaScript DOM operations e.g. Manipulation can happen
+// HINT: Inside onMounted(), all JavaScript DOM operations can happen and window is accessible.
 onMounted(() => {
   resize();
 
-  sideNavOverlay.value.classList.value = sideNavOverlay.value.classList.value +=
+  SideNavOverlay.value.classList.value = SideNavOverlay.value.classList.value +=
     " hidden";
 
   window.addEventListener("resize", () => {
@@ -305,7 +312,9 @@ const resize = () => {
 const isNavOverlay = () => {
   if (usePage().url === "/") openSideNav.value = !openSideNav.value;
 
-  // TIP: Underlying concept is to negate the openSideNavOverlay flag i.e. Toggle depending on it's value on the page we are in
+  // TIP: Underlying concept is to negate the openSideNavOverlay flag
+  // i.e. Toggle depending on it's value on the page we are in. And since we
+  // are using a common NavLayout it's always the same value
   if (usePage().url === "/add-video")
     openSideNavOverlay.value = !openSideNavOverlay.value;
 
@@ -317,7 +326,8 @@ const isNavOverlay = () => {
   if (usePage().url !== "/" && width.value < 640)
     openSideNavOverlay.value = !openSideNavOverlay.value;
 
-  // if (usePage().props.video) openSideNavOverlay.value = !openSideNavOverlay.value;
+  // This is the videos/{id} page
+  if (usePage().props.video) openSideNavOverlay.value = !openSideNavOverlay.value;
 };
 </script>
 

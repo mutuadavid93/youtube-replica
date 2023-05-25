@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Video;
+use App\Models\{Video, Comment};
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -19,9 +19,13 @@ class VideosController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Video $video)
+    public function show(int $id)
     {
-        return Inertia::render('Video');
+        return Inertia::render('Video', [
+            'video' => Video::find($id),
+            'comments' => Comment::all(),
+            'recommededVideos' => Video::inRandomOrder()->get()
+        ]);
     }
 
     /**

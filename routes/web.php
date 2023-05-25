@@ -17,7 +17,16 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', fn() => Inertia::render('Welcome'))->name("home");
+Route::get(
+    '/',
+    fn() => Inertia::render(
+        'Welcome',
+        // Pass payload i.e. videos to View to be accessed as props
+        ['videos' => Video::inRandomOrder()->get()]
+    )
+)->name("home");
+
+
 Route::get('/add-video', fn() => Inertia::render('AddVideo'))->name("addVideo");
 Route::get('/delete-video', fn() => Inertia::render('DeleteVideo'))->name("deleteVideo");
 

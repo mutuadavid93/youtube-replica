@@ -20,14 +20,18 @@
     <div
       class="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2"
     >
-      <VideoCard
-        title="Cool city view"
-        views="1.4M views - 3 days ago"
-        user="John Doe McGrew"
-        image="https://picsum.photos/id/230/100"
-        videoUrl="/videos/seoul-traffic.mp4"
-        thumbnail="/videos/Thumbnails/seoul-traffic.png"
-      />
+      <div v-for="(video, index) in videos" :key="video">
+        <Link :href="route('videos.show', { id: video.id })">
+          <VideoCard
+            :title="video.title"
+            :user="video.user"
+            :views="video.views"
+            :image="`https://picsum.photos/id/${index}/100`"
+            :videoUrl="video.video"
+            :thumbnail="video.thumbnail"
+          />
+        </Link>
+      </div>
     </div>
   </NavLayout>
 </template>
@@ -37,9 +41,10 @@ import { Head, Link } from "@inertiajs/vue3";
 import NavLayout from "@/Layouts/NavLayout.vue";
 import VideoCard from "@/Components/VideoCard.vue";
 
-// defineProps({
-//   canLogin: Boolean,
-// });
+// Extra props
+defineProps({
+  videos: Array,
+});
 </script>
 
 <style>
