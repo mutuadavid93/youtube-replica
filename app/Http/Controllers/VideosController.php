@@ -31,8 +31,23 @@ class VideosController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Video $video)
+    public function destroy(int $id)
     {
-        //
+        $video = Video::find($id);
+
+        // Remove the file from local folder too.
+        // Since the file from DB already match public file path.
+        if (file_exists(public_path() . $video->video)) {
+            unlink(public_path() . $video->video);
+        }
+
+        if (file_exists(public_path() . $video->thumbnail)) {
+            unlink(public_path() . $video->thumbnail);
+        }
+
+        $video->delete();
+
+        // Redirect back to see all remaining videos list
+        return redirect()->route('deleteVideo');
     }
 }

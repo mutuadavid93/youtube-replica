@@ -24,27 +24,32 @@
         </thead>
 
         <tbody>
-          <tr class="border-b flex justify-between">
-            <td class="px-6 py-4 w-7/12 text-sm font-medium text-gray-900">
-              <video
-                src="/videos/seoul-traffic.mp4"
-                width="320"
-                controls
-                type="video/mp4"
-              ></video>
-            </td>
-            <td class="px-6 py-4 w-5/12 text-sm font-medium text-gray-900 relative">
-              <!-- We can have div inside table elements too  -->
-              <div class="text-white font-extrabold mb-4">This is a title</div>
-              <div class="w-full">
-                <button
-                  class="text-white absolute bottom-4 right-4 text-xs bg-red-600 hover:bg-red-700 font-bold py-1 px-1 float-right rounded cursor-pointer"
-                >
-                  Delete
-                </button>
-              </div>
-            </td>
-          </tr>
+          <div v-for="video in videos" :key="video">
+            <tr class="border-b flex justify-between">
+              <td class="px-6 py-4 w-7/12 text-sm font-medium text-gray-900">
+                <video
+                  :src="video.video || ''"
+                  width="320"
+                  controls
+                  type="video/mp4"
+                ></video>
+              </td>
+              <td class="px-6 py-4 w-5/12 text-sm font-medium text-gray-900 relative">
+                <!-- We can have div inside table elements too  -->
+                <div class="text-white font-extrabold mb-4">{{ video.title }}</div>
+                <div class="w-full">
+                  <Link
+                    :href="route('videos.destroy', { id: video.id })"
+                    method="delete"
+                    as="button"
+                    class="text-white absolute bottom-4 right-4 text-xs bg-red-600 hover:bg-red-700 font-bold py-1 px-1 float-right rounded cursor-pointer"
+                  >
+                    Delete
+                  </Link>
+                </div>
+              </td>
+            </tr>
+          </div>
         </tbody>
       </table>
     </div>
@@ -55,7 +60,9 @@
 import { Head, Link } from "@inertiajs/vue3";
 import NavLayout from "@/Layouts/NavLayout.vue";
 
-// defineProps({
-//   canLogin: Boolean,
-// });
+// TIP: props passed into the view can also be accessed by defining them
+// in the defineProps() macro as below.
+defineProps({
+  videos: Array,
+});
 </script>

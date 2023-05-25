@@ -28,8 +28,12 @@ Route::get(
 
 
 Route::get('/add-video', fn() => Inertia::render('AddVideo'))->name("addVideo");
-Route::get('/delete-video', fn() => Inertia::render('DeleteVideo'))->name("deleteVideo");
+
+Route::get('/delete-video', fn() => Inertia::render('DeleteVideo', [
+    'videos' => Video::all()
+]))->name("deleteVideo");
 
 Route::get('/videos/{id}', [VideosController::class, 'show'])->name('videos.show');
+Route::delete('/videos/{id}', [VideosController::class, 'destroy'])->name('videos.destroy');
 
 require __DIR__ . '/auth.php';
