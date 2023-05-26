@@ -16,7 +16,7 @@
     <div class="xl:flex">
       <!-- First column -->
       <div class="p-3">
-        <video :src="video.video || ''" controls autoplay />
+        <video :src="video.video || ''" loop controls autoplay />
         <div class="text-white text-2xl font-extrabold mt-4">{{ video.title }}</div>
         <div class="flex items-center mb-4">
           <img
