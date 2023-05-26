@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Video, Comment};
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+use App\Models\{Video, Comment};
 
 class VideosController extends Controller
 {
@@ -13,7 +13,44 @@ class VideosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $image_file = null;
+        $video_file = null;
+
+        $video = new Video();
+
+        $image_file = $request->file('image');
+        $request->validate([
+            'image' => 'required|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        $video_file = $request->file('video');
+        $request->validate(['video' => 'required|mimes:mp4']);
+
+        $thumbPath = '/videos/Thumbnails/';
+        $vidPath = '/videos/';
+
+        $time = time();
+        $extension = $image_file->getClientOriginalExtension();
+        $imageName = $time . '.' . $extension;
+
+        $extension = $video_file->getClientOriginalExtension();
+        $videoName = $time . '.' . $extension;
+
+        // Save to Database
+        $video->title = $request->input("title");
+        $video->video = $vidPath . $videoName;
+        $video->thumbnail = $thumbPath . $imageName;
+        $video->user = "John Weeks Dev";
+        $video->views = rand(10, 100) . 'k views - ' . rand(1, 6) . ' days ago';
+
+        // Finally move the files
+        $image_file->move(public_path() . $thumbPath, $imageName);
+        $video_file->move(public_path() . $vidPath, $videoName);
+
+        if ($video->save()) {
+            // Redirect back to show the video just created
+            return redirect()->route('videos.show', $video['id']);
+        }
     }
 
     /**

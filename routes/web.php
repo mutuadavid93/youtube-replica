@@ -34,6 +34,7 @@ Route::get('/delete-video', fn() => Inertia::render('DeleteVideo', [
 ]))->name("deleteVideo");
 
 Route::get('/videos/{id}', [VideosController::class, 'show'])->name('videos.show');
+Route::post('/films', [VideosController::class, 'store'])->name('videos.store');
 Route::delete('/videos/{id}', [VideosController::class, 'destroy'])->name('videos.destroy');
 
 require __DIR__ . '/auth.php';

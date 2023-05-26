@@ -106,7 +106,12 @@ onMounted(() => {
 watch(
   () => show.value,
   (show) => {
-    video.value.play();
+    // Pause the currently playing media, if any
+    if (video.value !== null && !video.value.paused) {
+      video.value.pause();
+      video.value.currentTime = 0;
+    }
+    
     // If show is true, show the video
     if (show) {
       showVideo.value = true;
