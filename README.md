@@ -1,8 +1,10 @@
-### TailwindCSS Breakpoints
+### Built with Laravel, Vue, TailwindCSS
 
-min-w-full : An element can take the full available space or go beyond that
+<p align="center">
+  <img src="https://laravel.com/img/logomark.min.svg" alt="Laravel" width="100">
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  <img src="https://vuejs.org/logo.svg" alt="Vue" width="100">
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg" alt="TailwindCSS" width="100">
+</p>
 
-w-[100%] : Just In Time (JIT) generates a dynamic width of 100%. The best part is that
-it can allow responsive variants e.g.
-
-md:w-[100%] :  which would apply the width of 100% only from the medium breakpoint and above.
